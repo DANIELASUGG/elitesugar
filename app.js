@@ -1,53 +1,117 @@
-import React, { useState } from "react";
+// Estrutura completa de um projeto React para o site EliteSugar
 
-export default function App() {
-  const [show, setShow] = useState("login");
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
-  const [registerData, setRegisterData] = useState({
-    email: "",
-    password: "",
-    plano: "bronze",
-  });
+// 1. package.json
+{
+  "name": "elitesugar",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+}
 
-  const handleLoginChange = (e) =>
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+// 2. public/index.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Encontre seu parceiro ideal no EliteSugar. Site exclusivo para Sugar Daddies e Sugar Babies." />
+    <title>EliteSugar</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
 
-  const handleRegisterChange = (e) =>
-    setRegisterData({ ...registerData, [e.target.name]: e.target.value });
+// 3. src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
 
-  const handleLogin = () => alert("Login simulado para: " + loginData.email);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
 
-  const handleRegister = () =>
-    alert(
-      `Cadastro simulado para: ${registerData.email} com plano ${registerData.plano}`
-    );
+// 4. src/index.css
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fdfdfd;
+}
 
+// 5. src/App.js
+import React from 'react';
+import './App.css';
+
+function App() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-pink-100 to-pink-200 flex flex-col items-center justify-center p-4 font-sans">
-      <h1 className="text-4xl font-bold mb-6 text-rose-700">EliteSugar 💎</h1>
+    <div className="App">
+      <header className="header">
+        <h1>EliteSugar</h1>
+        <p>O site exclusivo para Sugar Daddies e Sugar Babies</p>
+      </header>
+      <main>
+        <section className="intro">
+          <h2>Relacionamentos sem julgamentos</h2>
+          <p>Cadastre-se para encontrar conexões autênticas com benefícios mútuos.</p>
+          <button>Comece Agora</button>
+        </section>
+      </main>
+      <footer>
+        <p>&copy; 2025 EliteSugar. Todos os direitos reservados.</p>
+      </footer>
+    </div>
+  );
+}
 
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6">
-        <div className="mb-4 flex space-x-4">
-          <button
-            onClick={() => setShow("login")}
-            className={`flex-1 py-2 rounded-xl ${
-              show === "login"
-                ? "bg-rose-600 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-          >
-            Entrar
-          </button>
-          <button
-            onClick={() => setShow("register")}
-            className={`flex-1 py-2 rounded-xl ${
-              show === "register"
-                ? "bg-rose-600 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-          >
-            Cadastrar
-          </button>
-        </div>
+export default App;
 
-        {show === "log
+// 6. src/App.css
+.App {
+  text-align: center;
+  background-color: #fff0f5;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 2rem;
+  background: #d63384;
+  color: white;
+}
+
+.intro {
+  padding: 2rem;
+}
+
+button {
+  padding: 1rem 2rem;
+  background: #d63384;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #a61e61;
+}
+
+footer {
+  margin-top: auto;
+  padding: 1rem;
+  background: #f8d7da;
+  color: #333;
+}
